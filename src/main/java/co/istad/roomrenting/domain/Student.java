@@ -1,6 +1,5 @@
 package co.istad.roomrenting.domain;
 
-import co.istad.roomrenting.util.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,21 +9,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class User {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String password;
+    private String phoneNumber;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserProfile userProfile;
-
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "student")
     private List<RentalTransaction> rentalTransactions;
 }
